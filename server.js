@@ -4,11 +4,10 @@ const express = require('express')
 // CONFIRURATION
 require('dotenv').config()
 const PORT = process.env.PORT
-console.log(PORT)
 const app = express()
 
 // MIDDLEWARE
-app.set('views', _dirname + '/views')
+app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 
@@ -22,5 +21,5 @@ app.use('/breads', breadsController)
 
 // LISTEN
 app.listen(PORT, () => {
-    console.log('listening on port',PORT); 
+    console.log('listening on port', PORT); 
 })
