@@ -24,8 +24,10 @@ breads.post('/', (req, res) => {
 breads.get('/', (req, res) => {
   Bread.find()
   .then(foundBreads => {
-    console.log(foundBreads => {
-      res.render('index', {
+    
+    console.log(foundBreads)
+   
+    res.render('index', {
         breads: foundBreads, 
         title: 'Index Page'
       })
@@ -38,7 +40,6 @@ breads.get('/', (req, res) => {
   //   }
   //  )
 //    res.send(Bread)
-})
 
 // New
 breads.get('/new', (req, res) => {
@@ -54,7 +55,7 @@ breads.get('/:indexArray/edit', (req, res) =>{
 })
 
 // SHOW
-breads.get('/:arrayIndex', (req, res) => {
+breads.get('/:id', (req, res) => {
     Bread.findById(req.params.id)
     .then(foundBread => {
       res.render('show', {
