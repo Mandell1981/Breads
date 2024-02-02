@@ -31,7 +31,7 @@ function Edit ({bread, index}) {
           <br />
           <input type="submit"/>
         </form>
-        <form action={`/breads/${index}?_method=PUT`} method="POST">
+        <form action={`/breads/${bread.id}?_method=PUT`} method="POST">
             
         </form>
       </Default>
