@@ -49,7 +49,7 @@ breads.get('/new', (req, res) => {
 // EDIT
 breads.get('/:id/edit', (req, res) => {
   Bread.findById(req.params.id)
-  .then(foundBread => {
+  .then (foundBread => {
     res.render('edit', {
       bread: foundBread
     })
