@@ -78,9 +78,13 @@ breads.put('/:arrayIndex', (req, res) => {
 
 
 // Delete
-breads.delete('/:indexArray', (req, res) => {
-  Bread.splice(req.params.indexArray, 1)
-  res.status(303).redirect('/breads')
+breads.delete('/:id', (req, res) => {
+  Bread.findOneAndDelete(req.params.id)
+  .then(deletedBread => {
+
+    res.status(303).redirect('/breads')
+  })
+  
 })
 
 module.exports = breads
