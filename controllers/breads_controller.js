@@ -3,7 +3,7 @@ const breads = express.Router()
 const Bread = require('../models/bread.js')
 const Baker = require('../models/baker.js')
 
-// INDEX
+
 // CREATE
 breads.post('/', (req, res) => {
   if (!req.body.image) {
@@ -21,26 +21,24 @@ breads.post('/', (req, res) => {
 
 
 
-
+// Index
 breads.get('/', (req, res) => {
+  Baker.find()
+  .then(foundBakers => {
   Bread.find()
   .then(foundBreads => {
     
     console.log(foundBreads)
    
     res.render('index', {
-        breads: foundBreads, 
+        breads: foundBreads,
+        bakers: foundBakers, 
         title: 'Index Page'
       })
     })
   })
-  //   res.render('index', 
-  //   {
-  //       breads: Bread,
-  //       title: 'Index Page'
-  //   }
-  //  )
-//    res.send(Bread)
+})
+  
 
 // New
 breads.get('/new', (req, res) => {
