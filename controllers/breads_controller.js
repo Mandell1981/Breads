@@ -54,23 +54,29 @@ breads.get('/new', (req, res) => {
 
 // EDIT
 breads.get('/:id/edit', (req, res) => {
+  Baker.find()
+  .then(foundBakers => {
   Bread.findById(req.params.id)
   .then (foundBread => {
     res.render('edit', {
-      bread: foundBread
+      bread: foundBread,
+      bakers: foundBakers
     })
+   })
   })
 })
 
 // SHOW
 breads.get('/:id', (req, res) => {
     Bread.findById(req.params.id)
+    .populate('baker')
     .then(foundBread => {
-      const bakedBy = foundBread.getBakedBy()
-      console.log(bakedBy)
       res.render('show', {
         bread: foundBread
       })
+    })
+    .catch(err => {
+      res.send('404')
     })
 })
 
@@ -83,7 +89,6 @@ breads.put('/:id', (req, res) => {
   }
   Bread.findByIdAndUpdate(req.params.id, req.body, {new: true})
   .then(updatedBread => {
-    console.log(updatedBread)
     res.redirect(`/breads/${req.params.id}`)
   })
 })
