@@ -22,22 +22,15 @@ breads.post('/', (req, res) => {
 
 
 // Index
-breads.get('/', (req, res) => {
-  Baker.find()
-  .then(foundBakers => {
-  Bread.find()
-  .then(foundBreads => {
-    
-    console.log(foundBreads)
-   
-    res.render('index', {
+breads.get('/', async (req, res) => {
+  const foundBakers = await Baker.find()
+  const foundBreads = await Bread.find()
+   res.render('index', {
         breads: foundBreads,
         bakers: foundBakers, 
         title: 'Index Page'
       })
     })
-  })
-})
   
 
 // New
