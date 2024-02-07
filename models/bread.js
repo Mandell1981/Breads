@@ -14,6 +14,7 @@ const breadSchema = new Schema ({
   }
 })
 
+
 // Helper Method
 breadSchema.methods.getBakedBy = function() {
   return (
